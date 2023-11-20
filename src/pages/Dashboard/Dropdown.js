@@ -5,6 +5,7 @@ import { ReactComponent as Arrow } from "../../assets/images/dropdown-arrow.svg"
 export const DropDown = ({ dropDown, setDropDown, clickHandler }) => {
   const ref = useRef();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
