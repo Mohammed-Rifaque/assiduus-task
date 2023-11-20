@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { startTransition } from 'react';
-import { Button } from '@mui/material';
 import { ReactComponent as Arrow } from "../../assets/images/dropdown-arrow.svg";
 
 export const DropDown = ({ dropDown, setDropDown, clickHandler }) => {

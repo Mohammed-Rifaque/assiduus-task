@@ -4,10 +4,8 @@ import "./style.css";
 import Logo from "../../../assets/images/Main_Logo.svg";
 // import { ReactComponent as BellIcon } from "../../../assets/images/bell.svg";
 
-import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
-  const navigate = useNavigate();
   const [menu, setMenu] = useState(false);
 
 
