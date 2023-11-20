@@ -1,12 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, {useState } from "react";
 import "./style.css";
 
-import Logo from "../../../assets/images/Main_Logo.svg\\\\\\\\\\";
-import { ReactComponent as BellIcon } from "../../../assets/images/bell.svg";
+import Logo from "../../../assets/images/Main_Logo.svg";
+// import { ReactComponent as BellIcon } from "../../../assets/images/bell.svg";
 
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { Button } from "@mui/material";
 
 const NavBar = () => {
   const navigate = useNavigate();
