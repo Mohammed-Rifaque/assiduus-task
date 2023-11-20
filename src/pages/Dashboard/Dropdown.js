@@ -17,6 +17,7 @@ export const DropDown = ({ dropDown, setDropDown, clickHandler }) => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref]);
 
   const handleClick = (value) => {
