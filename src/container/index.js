@@ -4,11 +4,8 @@ import NavBar from "../components/common/NavBar";
 import SideBar from "../components/common/SideBar";
 
 const DashboardLayout = () => {
-  const handleClick = ()=>{
-    console.log("handleclick")
-  }
   return (
-    <div className="admin-dashboard" onClick={handleClick}>
+    <div className="admin-dashboard">
       <NavBar />
       <div
         className="main-dashboard"

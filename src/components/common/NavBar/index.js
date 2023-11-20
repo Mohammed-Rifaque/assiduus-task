@@ -1,34 +1,23 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import "./style.css";
-
 import Logo from "../../../assets/images/Main_Logo.svg";
-// import { ReactComponent as BellIcon } from "../../../assets/images/bell.svg";
-
 
 const NavBar = () => {
   const [menu, setMenu] = useState(false);
 
+  const handleMenu = () => {
+    setMenu(!menu);
+  };
 
-const handleMenu = () => {
-  setMenu(true);
-};
   return (
     <>
-      <nav >
+      <nav>
         <div className="dashboard-nav">
-          <div
-            className="logo"
-            // onClick={() => navigate(SUPER_ADMIN_DASHBOARD_PAGE)}
-          >
+          <div className="logo">
             <img src={Logo} alt="logo" />
           </div>
           <div className="right-nav">
-            <span
-              style={{ display: "flex", alignItems: "center" }}
-              id="admin-profile"
-            >
-
-      
+            <span style={{ display: "flex", alignItems: "center" }} id="admin-profile">
               <div className="menu-box">
                 <button className="hamburger-menu" onClick={handleMenu}>
                   ☰
@@ -37,18 +26,10 @@ const handleMenu = () => {
             </span>
           </div>
         </div>
-        <div
-          id="overlay"
-          style={{ display: menu.isMenuOpen ? "block" : "" }}
-        ></div>
+        {menu && <div id="overlay"></div>}
       </nav>
     </>
   );
 };
 
 export default NavBar;
-
-
-
-
-

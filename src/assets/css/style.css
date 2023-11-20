@@ -549,19 +549,22 @@ tr:nth-child(even) {
 }
 
 .charts {
-  width: calc(50% - 15px);
-  height: 350px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .charts .card {
   background-color: #ffffff;
   border-radius: 8px;
-  /* padding: 0 20px; */
+  width: calc(50% - 15px);
 }
 
+.charts .card svg{
+  width: 100%;
+  height: 100%;
+}
 .checking-account,
 .invoices-owed,
 .total-cash-flow,
@@ -575,7 +578,7 @@ tr:nth-child(even) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 20px;
   border-bottom: 1px solid #ededed;
 }
 .card .card-title h2 {
@@ -602,7 +605,7 @@ tr:nth-child(even) {
 th,
 td {
   border: unset;
-  padding: 0 20px;
+  padding: 10px 20px;
 }
 
 
@@ -745,24 +748,44 @@ td {
   outline: unset;
   padding: 10px;
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
 }
-
+.in-out-btn-wrapper > div{
+  display: flex;
+  align-items: center;
+}
 .in-out-btn-wrapper .button-in {
   background-color: #47B747;
   color: white;
-  border-radius: 12px;
+  border-radius: 6px;
   margin-right: 10px;
+}
+.domain{
+  display: none;
+}
+g > line{
+  display: none;
+}
+.total-cash-flow svg > g > g:nth-child(2) rect{
+  transform: translate(0px, 7px);
 }
 
 .in-out-btn-wrapper .button-out {
   background-color: #02BB7D;
   color: white;
-  border-radius: 12px;
+  border-radius: 6px;
 }
 
 .in-out-btn-wrapper .button-label {
   margin-left: 5px;
   font-weight: bold;
 }
+
+
+@media screen and (max-width: 1199px) {
+  .charts .card {
+    width: 100%;
+  }
+}
+

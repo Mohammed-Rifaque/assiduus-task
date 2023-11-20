@@ -11,7 +11,7 @@ function CheckAccount({ randomData }) {
     d3.select(svgRef.current).selectAll("*").remove(); 
   
     const data = randomData; 
-    const svg = d3.select(svgRef.current);
+    const svg = d3.select(svgRef.current)
     const margin = 50;
     const width = svg.attr("width") - margin;
     const height = svg.attr("height") - margin;
@@ -21,8 +21,6 @@ function CheckAccount({ randomData }) {
     g.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(xScale));
-    g.append("g")
-      .call(d3.axisLeft(yScale));
     const line = d3.line()
       .x((d, i) => xScale(i))
       .y(d => yScale(d))
@@ -46,7 +44,7 @@ function CheckAccount({ randomData }) {
         </div>
       </div>
 
-      <svg ref={svgRef} width="450" height="300"></svg>
+      <svg ref={svgRef} width="420" height="350"></svg>
     </div>
   );
 }

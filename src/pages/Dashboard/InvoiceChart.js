@@ -21,7 +21,7 @@ function InvoiceChart({ setShowUploadPopup, randomData }) {
     const xScale = d3.scaleBand()
       .domain(xLabels)
       .range([0, width])
-      .padding(0.2); 
+      .padding(0.5); 
 
     const yScale = d3.scaleLinear()
       .domain([0, d3.max(data)])
@@ -29,9 +29,6 @@ function InvoiceChart({ setShowUploadPopup, randomData }) {
 
     const g = svg.append("g")
       .attr("transform", `translate(${margin}, ${margin})`);
-
-    g.append("g")
-      .call(d3.axisLeft(yScale));
 
     g.append("g")
       .attr("transform", `translate(0, ${height})`)
@@ -46,10 +43,6 @@ function InvoiceChart({ setShowUploadPopup, randomData }) {
       .attr("width", xScale.bandwidth())
       .attr("height", (value) => height - yScale(value))
       .attr("fill", "#47B747");
-
-    g.append("g")
-      .attr("transform", `translate(0, ${height})`)
-      .call(d3.axisBottom(yScale));
   }, [randomData]);
 
   const handleNewInvoiceClick = () => {
@@ -81,7 +74,7 @@ function InvoiceChart({ setShowUploadPopup, randomData }) {
         </Button>
       </div>
 
-      <svg ref={svgRef} width="450" height="300"></svg>
+      <svg ref={svgRef} width="400" height="350"></svg>
 
       {/* Modal */}
       <Modal open={openModal} onClose={() => handleCloseModal(false)}>

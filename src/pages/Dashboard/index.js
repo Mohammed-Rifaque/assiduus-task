@@ -5,50 +5,49 @@ import InvoiceChart from './InvoiceChart';
 import CashFlowChart from './CashFlowChart';
 import AccountWatchlist from './AccountWatchlist';
 
-// For CheckAccount component
-function getRandomDataForCheckAccount(length, min, max) {
+/**
+ * @param {Number} length 
+ * @param {Number} min 
+ * @param {Number} max 
+ * @returns {Number[]} Array of random numbers between 0 and max int for the given length. 
+ */
+function getRandomArrayOfNumber(length, min, max) {
   return Array.from({ length }, () => Math.floor(Math.random() * (max - min + 1)) + min);
 }
 
-// For InvoiceChart component
-function getRandomDataForInvoiceChart() {
-  return [12, 5, 6, 6, 9, 10];
-}
-
-// For CashFlowChart component
+/**
+ * @returns {Object[]} Array of random objects of monthly product sale
+ */
 function getRandomDataForCashFlow() {
-  return [
-    { month: "January", apples: Math.floor(Math.random() * 5000), bananas: Math.floor(Math.random() * 5000) },
-    // { month: "February", apples: Math.floor(Math.random() * 5000), bananas: Math.floor(Math.random() * 5000) },
-    // { month: "March", apples: Math.floor(Math.random() * 5000), bananas: Math.floor(Math.random() * 5000) },
-    // { month: "April", apples: Math.floor(Math.random() * 5000), bananas: Math.floor(Math.random() * 5000) },
-    // { month: "May", apples: Math.floor(Math.random() * 5000), bananas: Math.floor(Math.random() * 5000) },
-    // { month: "June", apples: Math.floor(Math.random() * 5000), bananas: Math.floor(Math.random() * 5000) },
-    // { month: "July", apples: Math.floor(Math.random() * 5000), bananas: Math.floor(Math.random() * 5000) },
-    { month: "August", apples: Math.floor(Math.random() * 5000), bananas: Math.floor(Math.random() * 5000) },
-    { month: "September", apples: Math.floor(Math.random() * 5000), bananas: Math.floor(Math.random() * 5000) },
-    { month: "October", apples: Math.floor(Math.random() * 5000), bananas: Math.floor(Math.random() * 5000) },
-    { month: "November", apples: Math.floor(Math.random() * 5000), bananas: Math.floor(Math.random() * 5000) },
-    { month: "December", apples: Math.floor(Math.random() * 5000), bananas: Math.floor(Math.random() * 5000) }
-  ];
+  const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  function getRandomMonths(numMonths) {
+    const shuffledMonths = months.sort(() => Math.random() - 0.5);
+    return shuffledMonths.slice(0, numMonths);
+  }
+  let randomMonths = getRandomMonths(6)
+  // random number from 1000 to 5000
+  // Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000
+
+  // random number from 0 to 5000
+  // Math.floor(Math.random() * 5000)
+  return randomMonths.map((val) => ({ month: val, product1: Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000, product2: Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000 }))
 }
 
 const Dashboard = () => {
   const [randomKey, setRandomKey] = useState(0);
   const [showUploadPopup, setShowUploadPopup] = useState(false);
-  const [randomDataForCheckAccount, setRandomDataForCheckAccount] = useState(getRandomDataForCheckAccount(10, 1, 100));
-  const [randomDataForInvoiceChart, setRandomDataForInvoiceChart] = useState(getRandomDataForInvoiceChart());
+  const [randomDataForCheckAccount, setRandomDataForCheckAccount] = useState(getRandomArrayOfNumber(10, 1, 100));
+  const [randomDataForInvoiceChart, setRandomDataForInvoiceChart] = useState(getRandomArrayOfNumber(6, 1, 12));
   const [randomDataForCashFlow, setRandomDataForCashFlow] = useState(getRandomDataForCashFlow());
 
 
   const handleRandomize = () => {
-    setRandomDataForCheckAccount(getRandomDataForCheckAccount(10, 1, 100));
-    setRandomDataForInvoiceChart(getRandomDataForInvoiceChart());
+    setRandomDataForCheckAccount(getRandomArrayOfNumber(10, 1, 100));
+    setRandomDataForInvoiceChart(getRandomArrayOfNumber(6, 1, 12));
     setRandomDataForCashFlow(getRandomDataForCashFlow());
-  
     setRandomKey((prevKey) => prevKey + 1);
   };
-  
+
   return (
     <div className='main-content dashboard'>
       <div className="top-bar">
@@ -57,19 +56,17 @@ const Dashboard = () => {
 
       <div className="charts-wrapper">
         <div className="charts">
-        <div className='card'>
-        <CheckAccountChart key={randomKey}  randomData={randomDataForCheckAccount} />
-      </div>
-      <div className='card'>
-        <CashFlowChart  randomData={randomDataForCashFlow} />
-      </div>
-    </div>
-    <div className="charts">
-      <div className='card'>
-        <InvoiceChart setShowUploadPopup={setShowUploadPopup} randomData={randomDataForInvoiceChart} />
-      </div>
-      <div className='card'>
-        <AccountWatchlist />
+          <div className='card'>
+            <CheckAccountChart key={randomKey} randomData={randomDataForCheckAccount} />
+          </div>
+          <div className='card'>
+            <InvoiceChart setShowUploadPopup={setShowUploadPopup} randomData={randomDataForInvoiceChart} />
+          </div>
+          <div className='card'>
+            <CashFlowChart randomData={randomDataForCashFlow} />
+          </div>
+          <div className='card'>
+            <AccountWatchlist />
           </div>
         </div>
       </div>

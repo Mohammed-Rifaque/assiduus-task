@@ -54,7 +54,6 @@ function CashFlowChart({ randomData }) {
       .call(d3.axisBottom(x));
 
     g.append("g")
-      .call(d3.axisLeft(y).ticks(null, "s"))
       .append("text")
       .attr("x", 2)
       .attr("y", y(y.ticks().pop()) + 0.5)
