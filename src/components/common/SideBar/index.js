@@ -16,8 +16,7 @@ import {
 
 
 const SideBar = () => {
-    const { pathname: PATH_NAME } = useLocation();
-    const [activeTab, setActiveTab] = useState("dashboard"); // Set "dashboard" as the default active tab
+    const [activeTab, setActiveTab] = useState("dashboard"); 
 
     const sidebarItems = [
         {
