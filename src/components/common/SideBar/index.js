@@ -1,5 +1,5 @@
 import React from "react";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 import { useState } from "react";
@@ -13,10 +13,15 @@ import { ReactComponent as ContactsIcon } from "../../../assets/images/contacts-
 import {
     SUPER_ADMIN_DASHBOARD_PAGE,
 } from "../../../config/constant/routePathConstants";
+import { useDispatch, useSelector } from "react-redux";
+import { activitySelector ,setMenu} from "../../../redux/slicers/activitySlice";
 
 
 const SideBar = () => {
-    const [activeTab, setActiveTab] = useState("dashboard"); 
+    const dispatch = useDispatch();
+    const menuState = useSelector(activitySelector);
+  
+    const [activeTab, setActiveTab] = useState("dashboard");
 
     const sidebarItems = [
         {
@@ -56,36 +61,42 @@ const SideBar = () => {
             path: "",
         },
     ];
+    const handleMenuClose = () => {
+        dispatch(setMenu(false));
+    };
 
     const handleMenuClick = (slug) => {
         setActiveTab(slug);
     };
 
     return (
-        <>
-            <div
-                className={`dashboard-leftsidebar`}
-            >
+        <div
+            className={`dashboard-leftsidebar ${menuState.isMenuOpen ? "show" : ""
+                }`}>           
+                <div className="menu-box" style={{ float: "right", marginTop: "20px" }}>
+                <button className="hamburger-menu" onClick={handleMenuClose}>
+                  ✖
+                </button>
+              </div>
                 <ul>
-                    {sidebarItems?.map(
-                        ({ label, icon, path, slug }) => (
-                            <li
-                                key={label}
-                                className={activeTab === slug ? "active-main" : ""}
-                                id={"menu-list-item-" + slug}
-                                onClick={() => handleMenuClick(slug)}
-                            >
-                                <Link to={path}>
-                                    <span>{icon}</span>
-                                    {label}
-                                </Link>
-                            </li>
-                        )
-                    )}
-                </ul>
-            </div>
-        </>
-    );
+                {sidebarItems?.map(
+                    ({ label, icon, path, slug }) => (
+                        <li
+                            key={label}
+                            className={activeTab === slug ? "active-main" : ""}
+                            id={"menu-list-item-" + slug}
+                            onClick={() => handleMenuClick(slug)}
+                        >
+                            <Link to={path}>
+                                <span>{icon}</span>
+                                {label}
+                            </Link>
+                        </li>
+                    )
+                )}
+            </ul>
+        </div>
+    )
 };
 
 export default SideBar;
