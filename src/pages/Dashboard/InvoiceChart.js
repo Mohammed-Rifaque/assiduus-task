@@ -21,7 +21,7 @@ function InvoiceChart({ setShowUploadPopup, randomData }) {
     const xScale = d3.scaleBand()
       .domain(xLabels)
       .range([0, width])
-      .padding(0.5); 
+      .padding(0.7); 
 
     const yScale = d3.scaleLinear()
       .domain([0, d3.max(data)])
@@ -42,7 +42,9 @@ function InvoiceChart({ setShowUploadPopup, randomData }) {
       .attr("y", yScale)
       .attr("width", xScale.bandwidth())
       .attr("height", (value) => height - yScale(value))
-      .attr("fill", "#47B747");
+      .attr("fill", "#47B747")
+      .attr("rx", 5)
+      .attr("ry", 5);
   }, [randomData]);
 
   const handleNewInvoiceClick = () => {
