@@ -1,7 +1,7 @@
 .dashboard-leftsidebar li a {
     display: flex;
     align-items: center;
-    padding: 12px 14px;
+    padding: 12px 14px 12px 30px;
     font-family: "Poppins";
     font-weight: 800;
     font-size: 13px !important;
