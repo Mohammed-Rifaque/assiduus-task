@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.css";
 import Logo from "../../../assets/images/Main_Logo.svg";
 import SearchIcon from "@mui/icons-material/Search";
