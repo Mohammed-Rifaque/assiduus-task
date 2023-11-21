@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     background: #fdfdfd;
-    padding: 9px 12px 9px 30px;
+    padding: 12px 12px 12px 30px;
   }
   .dashboard-nav .logo {
     cursor: pointer;
@@ -341,4 +341,49 @@
   .dashboard-nav .right-nav img {
     display: none;
   }
+}
+
+
+
+.hamburger-menu {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  /* Add any additional styling you prefer */
+}
+
+/* Add a transition effect for the menu and overlay */
+#overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent dark background */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Style the search box */
+.search-box {
+  
+  display: flex;
+  align-items: center;
+  padding: 5px 5px 5px 10px;
+  margin-left: 10px;
+  background: #F6F7F9;
+  border-radius: 5px;
+}
+.notification-box:hover,
+.profile-box:hover,
+.down-arrow-box:hover {
+  color: #ff9900; /* change to your desired hover color */
+}
+
+
+.admin-profile{
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
