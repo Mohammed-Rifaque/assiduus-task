@@ -7,21 +7,48 @@ function InvoiceChart({ setShowUploadPopup, randomData }) {
   const [openModal, setOpenModal] = useState(false);
   const [invoiceNumber, setInvoiceNumber] = useState('');
   const [amount, setAmount] = useState('');
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    d3.select(svgRef.current).selectAll("*").remove();
+    const svg = d3.select(svgRef.current);
+
+    const updateDimensions = () => {
+      const width = svg.node().getBoundingClientRect().width;
+      const height = 350; 
+
+      setDimensions({ width, height });
+    };
+
+    updateDimensions(); 
+
+    const handleResize = () => {
+      updateDimensions();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!dimensions.width || !dimensions.height) return;
+
+    d3.select(svgRef.current).selectAll('*').remove();
+
     const data = randomData;
     const svg = d3.select(svgRef.current);
     const margin = 50;
-    const width = svg.attr("width") - margin;
-    const height = svg.attr("height") - margin;
+    const width = dimensions.width - margin;
+    const height = dimensions.height - margin;
 
     const xLabels = ['Older', 'Jan 01-08', 'Jan 09-16', 'Jan 17-24', 'Jan 25-31', 'Future'];
 
     const xScale = d3.scaleBand()
       .domain(xLabels)
       .range([0, width])
-      .padding(0.7); 
+      .padding(0.7);
 
     const yScale = d3.scaleLinear()
       .domain([0, d3.max(data)])
@@ -45,7 +72,7 @@ function InvoiceChart({ setShowUploadPopup, randomData }) {
       .attr("fill", "#47B747")
       .attr("rx", 5)
       .attr("ry", 5);
-  }, [randomData]);
+  }, [randomData, dimensions]);
 
   const handleNewInvoiceClick = () => {
     setOpenModal(true);
@@ -76,7 +103,7 @@ function InvoiceChart({ setShowUploadPopup, randomData }) {
         </Button>
       </div>
 
-      <svg ref={svgRef} width="400" height="350"></svg>
+      <svg ref={svgRef} width="100%" height={dimensions.height}></svg>
 
       {/* Modal */}
       <Modal open={openModal} onClose={() => handleCloseModal(false)}>
@@ -122,7 +149,6 @@ function InvoiceChart({ setShowUploadPopup, randomData }) {
           </div>
         </Box>
       </Modal>
-
     </div>
   );
 }
